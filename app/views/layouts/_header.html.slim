@@ -1,14 +1,27 @@
-nav.teal.lighten-2
+nav.white
   .nav-wrapper
-    a.brand-logo href="#" Logo
-    ul#nav-mobile.right.hide-on-med-and-down
-      - if user_signed_in?
+    ul#nav-mobile.hide-on-med-and-down
+      .left
         li
-          = link_to "Log out", destroy_user_session_path, method: :delete
-      - else
+          = link_to root_path do
+            |
+            i.fas.fa-home
+      .right
+        - if user_signed_in?
+          li
+            = link_to destroy_user_session_path, method: :delete do
+              |
+              i.fa.fa-sign-out-alt
+        - else
+          li
+            = link_to new_user_registration_path do
+              |
+              i.fas.fa-user-plus
+          li
+            = link_to new_user_session_path do
+              |
+              i.fa.fa-sign-in-alt
         li
-          = link_to "Sign up", new_user_registration_path
-        li
-          = link_to "Log in", new_user_session_path
-      li
-        = link_to "Github", "https://github.com/MoneyForest/rails-boilerplate", target: :_blank
+          = link_to "https://github.com/MoneyForest/rails-boilerplate", target: :_blank do
+            |
+            i.fab.fa-github

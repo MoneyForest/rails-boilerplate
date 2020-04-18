@@ -1,63 +1,85 @@
 h1.header.center
   | Welcome!!
 h4.light.center
-  | This is Boilerplate By using Ruby on Rails can quickly start developing
-.section
+  | This is Boilerplate by Ruby on Rails <br>
+.container
+  h5.left
+    | Tech Stack
+.container
   .row
-    .col.s8.offset-s2
+    .col.s12
       .col.s12.m4
-        .card.center
-          .card-image
-            = image_tag "sample-1.jpg"
-            span.card-title Card Title
-            a.btn-floating.halfway-fab.waves-effect.waves-light.red
-              i.material-icons add
-          .card-content
-            p I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+        = link_to "https://rubyonrails.org/", target: :_blank do
+          .card
+            .card-image
+              = image_tag "sample-1.jpg"
+              span.card-title
+                | Ruby on Rails
+            .card-content
+              | A web-application framework that includes everything needed to create database-backed web applications according to the Model-View-Controller (MVC) pattern.
       .col.s12.m4
-        .card.center
-          .card-image
-            = image_tag "sample-1.jpg"
-            span.card-title Card Title
-            a.btn-floating.halfway-fab.waves-effect.waves-light.red
-              i.material-icons add
-          .card-content
-            p I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+        = link_to "https://rspec.info/", target: :_blank do
+          .card
+            .card-image
+              = image_tag "sample-1.jpg"
+              span.card-title
+                | Rspec
+            .card-content
+              | Behaviour Driven Development for Ruby. Making TDD Productive and Fun.
       .col.s12.m4
-        .card.center
-          .card-image
-            = image_tag "sample-1.jpg"
-            span.card-title Card Title
-            a.btn-floating.halfway-fab.waves-effect.waves-light.red
-              i.material-icons add
-          .card-content
-            p I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+        = link_to "https://www.mysql.com/", target: :_blank do
+          .card
+            .card-image
+              = image_tag "sample-1.jpg"
+              span.card-title
+                | MySQL
+            .card-content
+              | MySQL is an open-source relational database management system (RDBMS).
+    .col.s12
+      .col.s12.m4
+        = link_to "http://slim-lang.com/", target: :_blank do
+          .card
+            .card-image
+              = image_tag "sample-1.jpg"
+              span.card-title
+                | Slim
+            .card-content
+              | Slim is a template language whose goal is to reduce the syntax to the essential parts without becoming cryptic.
+      .col.s12.m4
+        = link_to "https://materializecss.com/", target: :_blank do
+          .card
+            .card-image
+              = image_tag "sample-1.jpg"
+              span.card-title
+                | Materialize
+            .card-content
+              | A modern responsive front-end framework based on Material Design.
+      .col.s12.m4
+        = link_to "https://fontawesome.com/", target: :_blank do
+          .card
+            .card-image
+              = image_tag "sample-1.jpg"
+              span.card-title
+                | Font Awesome
+            .card-content
+              | The world's most popular and easiest to use icon set just got an upgrade. More icons. More styles. More Options.
   .row
-    .col.s8.offset-s2
+    .col.s12
       .col.s12.m4
-        .card.center
-          .card-image
-            = image_tag "sample-1.jpg"
-            span.card-title Card Title
-            a.btn-floating.halfway-fab.waves-effect.waves-light.red
-              i.material-icons add
-          .card-content
-            p I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+        = link_to "https://github.com/heartcombo/devise/", target: :_blank do
+          .card
+            .card-image
+              = image_tag "sample-1.jpg"
+              span.card-title
+                | Devise
+            .card-content
+              | Flexible authentication solution for Rails with Warden.
       .col.s12.m4
-        .card.center
-          .card-image
-            = image_tag "sample-1.jpg"
-            span.card-title Card Title
-            a.btn-floating.halfway-fab.waves-effect.waves-light.red
-              i.material-icons add
-          .card-content
-            p I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
-      .col.s12.m4
-        .card.center
-          .card-image
-            = image_tag "sample-1.jpg"
-            span.card-title Card Title
-            a.btn-floating.halfway-fab.waves-effect.waves-light.red
-              i.material-icons add
-          .card-content
-            p I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+        = link_to "https://github.com/amatsuda/active_decorator/", target: :_blank do
+          .card
+            .card-image
+              = image_tag "sample-1.jpg"
+              span.card-title
+                | ActiveDecorator
+            .card-content
+              | ORM agnostic truly Object-Oriented view helper for Rails 4, 5, and 6
