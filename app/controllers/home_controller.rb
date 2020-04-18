@@ -1,4 +1,8 @@
 class HomeController < ApplicationController
-  def index
+  def home
+      render 'home/top' if current_user
+  end
+
+  def top
   end
 end
