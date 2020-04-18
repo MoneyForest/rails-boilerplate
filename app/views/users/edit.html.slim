@@ -1,0 +1,19 @@
+.container
+  h2.center
+    | edit
+  .row
+    .col.s12
+      .col.s6.offset-s3
+        = form_for(current_user, url: user_path(current_user), html: { method: :put }) do |f|
+          .field
+            = f.label :id
+            br
+            = f.text_field :id
+          .field
+            = f.label :email
+            br
+            = f.text_field :email
+          .field
+            = f.label :gender
+            br
+            = f.text_field :gender

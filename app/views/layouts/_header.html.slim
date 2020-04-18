@@ -3,9 +3,18 @@ nav.white
     ul#nav-mobile.hide-on-med-and-down
       .left
         li
-          = link_to root_path do
+          = link_to root_path, class: "scale-transition" do
             |
             i.fas.fa-home
+        - if user_signed_in?
+          li
+            = link_to user_path("#{current_user.id}") do
+              |
+              i.fas.fa-user
+          li
+            = link_to edit_user_path("#{current_user.id}") do
+              |
+              i.fas.fa-user-edit
       .right
         - if user_signed_in?
           li
