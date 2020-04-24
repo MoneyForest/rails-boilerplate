@@ -31,7 +31,10 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'slim-rails'
 
 gem 'devise'
-gem "devise-encryptable"
+gem 'devise-encryptable'
+gem 'omniauth'
+gem 'omniauth-twitter'
+
 gem 'active_decorator'
 
 gem 'materialize-sass', '~> 1.0.0'
