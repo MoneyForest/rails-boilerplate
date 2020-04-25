@@ -8,6 +8,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     callback_from :facebook
   end
 
+  def google
+    callback_from :google
+  end
+
   private
   def callback_from(provider)
     provider = provider.to_s

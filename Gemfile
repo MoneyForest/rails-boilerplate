@@ -35,6 +35,7 @@ gem 'devise-encryptable'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 
 gem 'active_decorator'
 

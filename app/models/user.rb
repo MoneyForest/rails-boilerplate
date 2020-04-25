@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
  devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :trackable, :validatable,
-        :confirmable, :lockable, :timeoutable, :omniauthable, omniauth_providers: [:twitter, :facebook]
+        :confirmable, :lockable, :timeoutable, :omniauthable, omniauth_providers: [:twitter, :facebook, :google]
 
   def self.find_for_oauth(auth)
    user = User.where(uid: auth.uid, provider: auth.provider).first
