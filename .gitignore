@@ -40,3 +40,7 @@ yarn-debug.log*
 
 # vendor
 /vendor/*
+
+# certs
+/config/certs/*
+!/config/certs/.keep
