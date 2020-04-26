@@ -1,11 +1,11 @@
+# frozen_string_literal: true
+
 class HomeController < ApplicationController
   def home
     redirect_to top_path if current_user
   end
 
-  def top
-  end
+  def top; end
 
-  def mypage
-  end
+  def mypage; end
 end

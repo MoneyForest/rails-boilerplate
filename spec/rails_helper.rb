@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 require 'devise'
@@ -6,7 +8,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'rspec/autorun'
@@ -40,7 +42,6 @@ end
 OmniAuth.config.test_mode = true
 
 RSpec.configure do |config|
-
   # Rspec 4.0.0 以降では不要
   config.render_views
 
@@ -77,8 +78,8 @@ RSpec.configure do |config|
 
   # support
   Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
-  config.extend LoginSupport, :type => :controller
-  config.include OmniauthSupport, :type => :controller
+  config.extend LoginSupport, type: :controller
+  config.include OmniauthSupport, type: :controller
 
   # devise
   config.include Devise::Test::ControllerHelpers, type: :controller
