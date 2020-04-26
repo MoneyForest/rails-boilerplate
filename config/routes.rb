@@ -17,8 +17,6 @@ Rails.application.routes.draw do
 
   get '/api/v1/users/:id', to: 'api/v1/users#show'
 
-  if Rails.env.development?
-    mount LetterOpenerWeb::Engine, at: '/letter_opener'
-  end
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
 end

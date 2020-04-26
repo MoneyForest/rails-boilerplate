@@ -3,12 +3,13 @@ require 'spec_helper'
 require 'devise'
 
 ENV['RAILS_ENV'] ||= 'test'
-
 require File.expand_path('../config/environment', __dir__)
 
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+require 'capybara/rspec'
+require 'rspec/autorun'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -34,6 +35,10 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+
+# omniauth
+OmniAuth.config.test_mode = true
+
 RSpec.configure do |config|
 
   # Rspec 4.0.0 以降では不要
@@ -67,9 +72,13 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
+  # capybara
+  config.include Capybara::DSL
+
   # support
   Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
   config.extend LoginSupport, :type => :controller
+  config.include OmniauthSupport, :type => :controller
 
   # devise
   config.include Devise::Test::ControllerHelpers, type: :controller
