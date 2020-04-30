@@ -4,10 +4,9 @@ default: &default
   charset: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000create user karasu@localhost identified by 'crow'
-  username: <%= ENV['DB_USERNAME'] %>
-  password: <%= ENV['DB_PASSWORD'] %>
-  socket: /tmp/mysql.sock
-  host: localhost
+  username: root
+  password: password
+  host: db
 
 development:
   <<: *default
