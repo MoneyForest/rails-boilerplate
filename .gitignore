@@ -44,3 +44,10 @@ yarn-debug.log*
 # certs
 /config/certs/*
 !/config/certs/.keep
+
+# docker
+/docker/db/data/*
+!/docker/db/data/.keep
+
+# idea
+.idea
