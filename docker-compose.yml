@@ -15,16 +15,31 @@ services:
       - ./docker/db/sql:/docker-entrypoint-initdb.d
     ports:
       - "4306:3306"
-  web:
+  app:
     build: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 8080 -b '0.0.0.0'"
     volumes:
       - .:/app
     environment:
       - BUNDLE_PATH=/app/vendor/bundle
     ports:
-      - "3000:3000"
+      - "8080:8080"
     depends_on:
       - db
     stdin_open: true
+    tty: true
+  https-portal:
+    image: steveltn/https-portal:1
+    container_name: https_portal
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: always
+    volumes:
+      - ./docker/certs/:/var/lib/https-portal/
+    environment:
+      DOMAINS: 'moneyforest.com -> http://app:8080'
+      STAGE: local
+    links:
+      - app
     tty: true
