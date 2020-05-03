@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2020_04_19_140500) do
     t.datetime "birthday"
     t.string "gender"
     t.integer "zip_code"
+    t.string "address"
     t.integer "prefecture_id"
     t.string "living_arrangement"
     t.string "family_structure"
