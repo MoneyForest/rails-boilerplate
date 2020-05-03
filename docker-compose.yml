@@ -28,18 +28,3 @@ services:
       - db
     stdin_open: true
     tty: true
-  https-portal:
-    image: steveltn/https-portal:1
-    container_name: https_portal
-    ports:
-      - "80:80"
-      - "443:443"
-    restart: always
-    volumes:
-      - ./docker/certs/:/var/lib/https-portal/
-    environment:
-      DOMAINS: 'moneyforest.com -> http://app:8080'
-      STAGE: local
-    links:
-      - app
-    tty: true
