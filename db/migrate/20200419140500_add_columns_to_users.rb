@@ -13,6 +13,7 @@ class AddColumnsToUsers < ActiveRecord::Migration[6.0]
     add_column :users, :birthday, :datetime
     add_column :users, :gender, :string
     add_column :users, :zip_code, :integer
+    add_column :users, :address, :string
     add_column :users, :prefecture_id, :integer
     add_column :users, :living_arrangement, :string
     add_column :users, :family_structure, :string
