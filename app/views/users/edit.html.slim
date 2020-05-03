@@ -36,18 +36,8 @@ script charset="UTF-8" src="https://yubinbango.github.io/yubinbango/yubinbango.j
             br
             = f.text_area :address, class: 'p-region p-locality p-street-address p-extended-address'
           .field
-            = f.label :prefecture_id
-            br
-            = f.text_field :prefecture_id
-          .field
-            = f.label :family_structure
-            br
-            = f.text_field :family_structure
-          .field
             = f.label :job
             br
             = f.text_field :job
-          .field
-            = f.label :annual_income
-            br
-            = f.text_field :annual_income
+          .field.center
+            = f.submit 'confirm', class: "waves-effect waves-light btn"
