@@ -1,0 +1,38 @@
+script charset="UTF-8" src="https://yubinbango.github.io/yubinbango/yubinbango.js"
+
+= form_for(current_user, url: user_path(current_user), html: { method: :put, class: 'h-adr' }) do |f|
+  .field
+    = f.label :display_name
+    br
+    = f.text_field :display_name
+  .field
+    = f.label :profile
+    br
+    = f.text_area :profile
+  .field
+    = f.label :name
+    br
+    = f.text_field :name
+  .field
+    = f.label :birthday
+    br
+    = f.date_field :birthday
+  .field
+    = f.label :gender
+    br
+    = f.select :gender, %w(male female), { include_blank: 'select one' }, class: "browser-default"
+  .field
+    span.p-country-name style="display:none;" Japan
+    = f.label :zip_code
+    br
+    = f.text_field :zip_code, class: 'p-postal-code'
+  .field
+    = f.label :address
+    br
+    = f.text_area :address, class: 'p-region p-locality p-street-address p-extended-address'
+  .field
+    = f.label :job
+    br
+    = f.text_field :job
+  .field.center
+    = f.submit 'confirm', class: "waves-effect waves-light btn"
