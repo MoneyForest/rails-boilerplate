@@ -9,8 +9,6 @@ class User < ApplicationRecord
          omniauth_providers: %i[twitter facebook google]
 
   validates :display_name,
-            presence: true,
-            uniqueness: true,
             length: { in: 1..15 },
             format: {
               with: /\A[a-z0-9]+\z/,
@@ -24,7 +22,7 @@ class User < ApplicationRecord
 
   validate :birthday_is_past
 
-  validates :gender, inclusion: { in: %w[male female] }, allow_nil: true
+  validates :gender, inclusion: { in: %w[male female] }, allow_blank: true
 
   validates :zip_code, length: { is: 7 }, numericality: { only_integer: true }
 
