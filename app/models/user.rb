@@ -8,10 +8,25 @@ class User < ApplicationRecord
          :confirmable, :lockable, :timeoutable, :omniauthable,
          omniauth_providers: %i[twitter facebook google]
 
-  validates :display_name, length: { in: 1..15 }
+  validates :display_name,
+            presence: true,
+            uniqueness: true,
+            length: { in: 1..15 },
+            format: {
+              with: /\A[a-z0-9]+\z/,
+              message: 'は小文字英数字で入力してください'
+            }
+
+  validates :profile,
+            length: { maximum: 160 }
+
   validates :name, length: { in: 1..15 }
 
   validate :birthday_is_past
+
+  validates :gender, inclusion: { in: %w[male female] }, allow_nil: true
+
+  validates :zip_code, length: { is: 7 }, numericality: { only_integer: true }
 
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
