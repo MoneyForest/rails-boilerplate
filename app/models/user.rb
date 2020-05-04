@@ -13,18 +13,31 @@ class User < ApplicationRecord
             format: {
               with: /\A[a-z0-9]+\z/,
               message: 'は小文字英数字で入力してください'
-            }
+            },
+            on: :update
 
   validates :profile,
-            length: { maximum: 160 }
+            length: { maximum: 160 },
+            allow_blank: true,
+            on: :update
 
-  validates :name, length: { in: 1..15 }
+  validates :name,
+            length: { in: 1..15 },
+            allow_blank: true,
+            on: :update
 
-  validate :birthday_is_past
+  validate :birthday_is_past?,
+           on: :update
 
-  validates :gender, inclusion: { in: %w[male female] }, allow_blank: true
+  validates :gender,
+            inclusion: { in: %w[male female] },
+            allow_blank: true,
+            on: :update
 
-  validates :zip_code, length: { is: 7 }, numericality: { only_integer: true }
+  validates :zip_code,
+            length: { is: 7 },
+            numericality: { only_integer: true },
+            on: :update
 
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
@@ -43,8 +56,13 @@ class User < ApplicationRecord
 
   private
 
-  def birthday_is_past
-    errors.add(:birthday, 'は今日以前の日付を選択してください') unless birthday < Date.today
+  def birthday_is_past?
+    unless birthday
+      errors.add(:birthday, 'can\'t be blank')
+      return
+    end
+
+    errors.add(:birthday, 'should be selected a day before today') if birthday > Date.today
   end
 
   def self.dummy_email(auth)
