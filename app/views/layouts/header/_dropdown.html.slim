@@ -1,0 +1,27 @@
+- if user_signed_in?
+  a.dropdown-trigger.btn data-target="dropdown-after-sign-in" href="#"
+    | #{current_user.display_name}
+  ul#dropdown-after-sign-in.dropdown-content
+    li
+      = link_to destroy_user_session_path, method: :delete do
+        | logout
+    li
+      = link_to user_path("#{current_user.id}") do
+        | show
+    li
+      = link_to edit_user_path("#{current_user.id}") do
+        | edit
+- else
+  a.dropdown-trigger.btn data-target="dropdown-before-sign-in" href="#"
+    | welcome
+  ul#dropdown-before-sign-in.dropdown-content
+    li
+      = link_to new_user_session_path do
+        | sign in
+    li
+      = link_to new_user_registration_path do
+        | sign up
+    li
+      = link_to "https://github.com/MoneyForest/rails-boilerplate", target: :_blank do
+        |
+        i.fab.fa-github
