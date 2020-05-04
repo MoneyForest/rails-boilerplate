@@ -11,6 +11,9 @@
     li
       = link_to edit_user_path("#{current_user.id}") do
         | edit
+    li
+      = link_to edit_user_registration_path("#{current_user.id}") do
+        | edit registration
 - else
   a.dropdown-trigger.btn data-target="dropdown-before-sign-in" href="#"
     | welcome
