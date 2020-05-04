@@ -6,14 +6,13 @@ Rails.application.routes.draw do
   get 'mypage', to: 'home#mypage'
 
   devise_for :users, controllers: {
-    sessions: 'users/sessions',
-    omniauth_callbacks: 'omniauth_callbacks'
+    confirmations: 'users/confirmations',
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    passwords: 'users/passwords',
+    registrations: 'users/registrations',
+    unlocks:  'users/registrations',
+    sessions: 'users/sessions'
   }
-
-  devise_scope :user do
-    get 'sign_in', to: 'users/sessions#new'
-    get 'sign_out', to: 'users/sessions#destroy'
-  end
 
   resources :users
 
