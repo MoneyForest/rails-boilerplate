@@ -62,7 +62,9 @@ class User < ApplicationRecord
       return
     end
 
-    errors.add(:birthday, 'should be selected a day before today') if birthday > Date.today
+    if birthday > Date.today
+      errors.add(:birthday, 'should be selected a day before today')
+    end
   end
 
   def self.dummy_email(auth)
