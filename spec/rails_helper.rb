@@ -8,7 +8,9 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 
 # Prevent database truncation if the environment is production
-abort('The Rails environment is running in production mode!') if Rails.env.production?
+if Rails.env.production?
+  abort('The Rails environment is running in production mode!')
+end
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'rspec/autorun'
@@ -77,7 +79,7 @@ RSpec.configure do |config|
   config.include Capybara::DSL
 
   # support
-  Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+  Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
   config.extend LoginSupport, type: :controller
   config.include OmniauthSupport, type: :controller
 
