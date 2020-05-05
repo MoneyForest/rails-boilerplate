@@ -4,9 +4,13 @@ default: &default
   charset: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000create user karasu@localhost identified by 'crow'
-  username: root
-  password: password
-  host: db
+  username: <%= ENV['DB_LOCAL_USERNAME'] %>
+  password: <%= ENV['DB_LOCAL_PASSWORD'] %>
+  host: <%= ENV['DB_LOCAL_HOST'] %>
+#  WHEN USE DOCKER
+#  username: <%#= ENV['DB_DOCKER_USERNAME'] %>
+#  password: <%#= ENV['DB_DOCKER_PASSWORD'] %>
+#  host: <%#= ENV['DB_DOCKER_HOST'] %>
 
 development:
   <<: *default
@@ -19,5 +23,3 @@ test:
 production:
   <<: *default
   database: rails_boilerplate_production
-  username: <%= ENV['DB_USERNAME'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
