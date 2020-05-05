@@ -12,7 +12,8 @@ class User < ApplicationRecord
   mount_uploader :background_image, BackgroundImageUploader
 
   validates :display_name,
-            length: { in: 1..15 },
+            allow_blank: true,
+            length: { maximum: 15 },
             format: {
               with: /\A[a-z0-9]+\z/,
               message: 'は小文字英数字で入力してください'
@@ -20,39 +21,39 @@ class User < ApplicationRecord
             on: :update
 
   validates :profile,
-            length: { maximum: 160 },
             allow_blank: true,
+            length: { maximum: 160 },
             on: :update
 
   validates :name,
-            length: { in: 1..15 },
             allow_blank: true,
+            length: { in: 1..15 },
             on: :update
 
   validate :birthday_is_past?,
            on: :update
 
   validates :gender,
-            inclusion: { in: %w[male female] },
             allow_blank: true,
+            inclusion: { in: %w[male female] },
             on: :update
 
   validates :zip_code,
+            allow_blank: true,
             length: { is: 7 },
             numericality: { only_integer: true },
-            allow_blank: true,
             on: :update
 
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
 
     unless user
-      user ||= User.create(
-        uid: auth.uid,
-        provider: auth.provider,
-        email: User.dummy_email(auth),
-        password: Devise.friendly_token[0, 20]
-      )
+      user ||= User.new do |u|
+        u.uid = auth.uid
+        u.provider = auth.provider
+        u.email = User.dummy_email(auth)
+        u.password = Devise.friendly_token[0, 20]
+      end
     end
 
     user
