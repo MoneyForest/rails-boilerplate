@@ -13,6 +13,10 @@ services:
       - ./docker/db/data:/var/lib/mysql
       - ./docker/db/my_cnf:/etc/mysql/conf.d
       - ./docker/db/sql:/docker-entrypoint-initdb.d
+      - /app/vendor
+      - /app/tmp
+      - /app/log
+      - /app/.git
     ports:
       - "4306:3306"
   app:
