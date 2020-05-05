@@ -5,18 +5,24 @@
     .col.s12
       .col.s6.offset-s3
         p
-          | Display name : #{current_user.display_name}
+          | Display name : #{@user.display_name}
         p
-          | Profile : #{current_user.profile}
+          | Icon image :
+          img alt="icon_image" border="0" height="128" src="#{@user.icon_image_url}" width="128" /
         p
-          | Name : #{current_user.name}
+          | Background image :
+          img alt="icon_image" border="0" height="128" src="#{@user.background_image_url}" width="128" /
         p
-          | Birthday : #{current_user.birthday}
+          | Profile : #{@user.profile}
         p
-          | Gender : #{current_user.gender}
+          | Name : #{@user.name}
         p
-          | Zip code : #{current_user.zip_code}
+          | Birthday : #{@user.birthday}
         p
-          | Address : #{current_user.address}
+          | Gender : #{@user.gender}
         p
-          | Job : #{current_user.job}
+          | Zip code : #{@user.zip_code}
+        p
+          | Address : #{@user.address}
+        p
+          | Job : #{@user.job}

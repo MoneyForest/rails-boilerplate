@@ -8,6 +8,9 @@ class User < ApplicationRecord
          :confirmable, :lockable, :timeoutable, :omniauthable,
          omniauth_providers: %i[twitter facebook google]
 
+  mount_uploader :icon_image, IconImageUploader
+  mount_uploader :background_image, BackgroundImageUploader
+
   validates :display_name,
             length: { in: 1..15 },
             format: {
@@ -37,6 +40,7 @@ class User < ApplicationRecord
   validates :zip_code,
             length: { is: 7 },
             numericality: { only_integer: true },
+            allow_blank: true,
             on: :update
 
   def self.find_for_oauth(auth)
@@ -57,10 +61,7 @@ class User < ApplicationRecord
   private
 
   def birthday_is_past?
-    unless birthday
-      errors.add(:birthday, 'can\'t be blank')
-      return
-    end
+    return unless birthday
 
     if birthday > Date.today
       errors.add(:birthday, 'should be selected a day before today')
