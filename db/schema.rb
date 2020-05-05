@@ -35,9 +35,9 @@ ActiveRecord::Schema.define(version: 20_200_504_184_052) do
     t.datetime 'updated_at', precision: 6, null: false
     t.string 'provider'
     t.string 'uid'
-    t.string 'display_name', default: 'anonymous'
-    t.string 'icon_image_path', limit: 2000
-    t.string 'background_image_path', limit: 2000
+    t.string 'display_name'
+    t.string 'icon_image'
+    t.string 'background_image'
     t.text 'profile'
     t.string 'name'
     t.datetime 'birthday'
