@@ -21,6 +21,7 @@ import 'materialize-css/dist/js/materialize'
 
 $(document).on('turbolinks:load', function () {
   // initialize matelialize
+  $('select').formSelect();
   $('.sidenav').sidenav();
   $('.parallax').parallax();
   $('.dropdown-trigger').dropdown();
