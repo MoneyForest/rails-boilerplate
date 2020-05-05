@@ -20,14 +20,16 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     @user = User.find_for_oauth(request.env['omniauth.auth'])
 
+    # skip confirm
+    @user.skip_confirmation!
+    @user.save!
+
     if @user.persisted?
-      print('persisted true')
       flash[:notice] = I18n.t('devise.omniauth_callbacks.success', kind: provider.capitalize)
       sign_in_and_redirect @user, event: :authentication
     else
-      print('persisted false')
       session["devise.#{provider}_data"] = request.env['omniauth.auth']
-      redirect_to controller: 'sessions', action: 'new'
+      redirect_to new_user_registration_path
     end
   end
 end
