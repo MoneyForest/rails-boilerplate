@@ -26,6 +26,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # DELETE /resource
   def destroy
+    withdrawal_user = WithdrawalUser.new(user_id: current_user.id, email: current_user.email)
+    withdrawal_user.save!
     super
   end
 
