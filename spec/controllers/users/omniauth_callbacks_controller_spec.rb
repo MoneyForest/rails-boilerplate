@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-RSpec.describe OmniauthCallbacksController, type: :controller do
+RSpec.describe Users::OmniauthCallbacksController, type: :controller do
   describe 'callback twitter' do
     before do
       OmniAuth.config.mock_auth[:twitter] = twitter_mock
