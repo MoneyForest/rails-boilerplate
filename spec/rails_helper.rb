@@ -79,7 +79,7 @@ RSpec.configure do |config|
 
   # support
   Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
-  config.extend LoginSupport, type: :controller
+  config.include LoginSupport, type: :controller
   config.include OmniauthSupport, type: :controller
 
   # devise
