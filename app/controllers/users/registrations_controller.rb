@@ -30,8 +30,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
       w.user_id = current_user.id
       w.email = current_user.email
     end
-    withdrawal_user.save!
-    super
+    User.transaction do
+      withdrawal_user.save!
+      resource.destroy!
+    end
+    Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+    set_flash_message! :notice, :destroyed
+    yield resource if block_given?
+    respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
   end
 
   # GET /resource/cancel
