@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+
 RSpec.describe Users::RegistrationsController, type: :controller do
   describe 'GET /resource/sign_up' do
     it 'returns http success' do
@@ -26,40 +27,16 @@ RSpec.describe Users::RegistrationsController, type: :controller do
   end
 
   describe 'GET /resource/edit' do
-    before do
-      user = create(:user)
-      user.skip_confirmation!
-      user.save!
-    end
     it 'returns http success' do
-      visit new_user_session_path
-      expect(response).to have_http_status(:success)
-      fill_in 'Email',                 with: 'hoge@example.com'
-      fill_in 'Password',              with: 'foobar'
-      click_button 'Log in'
-      expect(URI.parse(current_url).path.to_s).to eq(top_path)
-      expect(page).to have_text('Signed in successfully.')
-
+      sign_in_user
       visit edit_user_registration_path
       expect(response).to have_http_status(:success)
     end
   end
 
   describe 'PUT /resource' do
-    before do
-      user = create(:user)
-      user.skip_confirmation!
-      user.save!
-    end
     it 'returns http success' do
-      visit new_user_session_path
-      expect(response).to have_http_status(:success)
-      fill_in 'Email',                 with: 'hoge@example.com'
-      fill_in 'Password',              with: 'foobar'
-      click_button 'Log in'
-      expect(URI.parse(current_url).path.to_s).to eq(top_path)
-      expect(page).to have_text('Signed in successfully.')
-
+      sign_in_user
       visit edit_user_registration_path
       expect(response).to have_http_status(:success)
       fill_in 'Email',                 with: 'fuga@example.com'
@@ -75,23 +52,11 @@ RSpec.describe Users::RegistrationsController, type: :controller do
   end
 
   describe 'DELETE /resource', js: true do
-    let(:user) { create(:user) }
-
-    before do
-      user.skip_confirmation!
-      user.save!
-    end
     it 'returns http success' do
+      sign_in_user
+
       expect(User.count).to eq(1)
       expect(WithdrawalUser.count).to eq(0)
-
-      visit new_user_session_path
-      expect(response).to have_http_status(:success)
-      fill_in 'Email',                 with: 'hoge@example.com'
-      fill_in 'Password',              with: 'foobar'
-      click_button 'Log in'
-      expect(URI.parse(current_url).path.to_s).to eq(top_path)
-      expect(page).to have_text('Signed in successfully.')
 
       visit edit_user_registration_path
       expect(response).to have_http_status(:success)

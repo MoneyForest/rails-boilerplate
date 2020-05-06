@@ -4,9 +4,11 @@ require 'rails_helper'
 
 RSpec.describe HomeController, type: :controller do
   describe 'GET #home' do
+    let(:user) { create(:user) }
+
     context 'current_user exists' do
-      login_user
       it 'returns http redirect' do
+        sign_in_user
         get :home
         expect(response).to have_http_status(:redirect)
       end
