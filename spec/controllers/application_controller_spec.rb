@@ -9,8 +9,8 @@ RSpec.describe ApplicationController, type: :controller do
     end
   end
 
-  describe '#some_acton' do
-    context 'when logged in' do
+  describe 'GET #some_acton' do
+    context 'when signed in' do
       before do
         allow(controller).to receive(:authenticate_user!).and_return true
       end
@@ -21,10 +21,9 @@ RSpec.describe ApplicationController, type: :controller do
       end
     end
 
-    context 'when not logged in' do
+    context 'when not signed in' do
       it 'returns http redirect' do
         get :index
-        expect(response).to have_http_status(:redirect)
         expect(response).to have_http_status(:redirect)
       end
     end
