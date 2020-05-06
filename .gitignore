@@ -52,3 +52,6 @@ yarn-debug.log*
 
 # idea
 .idea
+
+# simplecov
+/coverage
