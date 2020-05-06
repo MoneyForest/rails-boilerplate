@@ -13,7 +13,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20_200_504_184_052) do
-  create_table 'users', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci', force: :cascade do |t|
+  create_table 'users', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4', force: :cascade do |t|
     t.string 'email', default: '', null: false
     t.string 'encrypted_password', default: '', null: false
     t.string 'reset_password_token'
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20_200_504_184_052) do
     t.index ['unlock_token'], name: 'index_users_on_unlock_token', unique: true
   end
 
-  create_table 'withdrawal_users', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci', force: :cascade do |t|
+  create_table 'withdrawal_users', options: 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4', force: :cascade do |t|
     t.integer 'user_id', default: 0, null: false
     t.string 'email', default: '', null: false
   end
