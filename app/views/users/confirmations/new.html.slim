@@ -2,7 +2,7 @@ h2.header.center
   | Resend confirmation instructions
 .container
   = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
-    = render "devise/shared/error_messages", resource: resource
+    = render "users/shared/error_messages", resource: resource
     .field
       = f.label :email
       br
