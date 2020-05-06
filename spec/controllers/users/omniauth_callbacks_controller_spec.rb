@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+
 RSpec.describe Users::OmniauthCallbacksController, type: :controller do
   describe 'callback twitter' do
     before do
