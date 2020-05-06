@@ -44,4 +44,65 @@ RSpec.describe Users::RegistrationsController, type: :controller do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'PUT /resource' do
+    before do
+      user = create(:user)
+      user.skip_confirmation!
+      user.save!
+    end
+    it 'returns http success' do
+      visit new_user_session_path
+      expect(response).to have_http_status(:success)
+      fill_in 'Email',                 with: 'hoge@example.com'
+      fill_in 'Password',              with: 'foobar'
+      click_button 'Log in'
+      expect(URI.parse(current_url).path.to_s).to eq(top_path)
+      expect(page).to have_text('Signed in successfully.')
+
+      visit edit_user_registration_path
+      expect(response).to have_http_status(:success)
+      fill_in 'Email',                 with: 'fuga@example.com'
+      fill_in 'Password',              with: 'bazqux'
+      fill_in 'Password confirmation', with: 'bazqux'
+      fill_in 'Current password', with: 'foobar'
+      click_button 'Update'
+
+      expect(URI.parse(current_url).path.to_s).to eq(top_path)
+      expect(page).to have_text('You updated your account successfully, ' \
+                                'but we need to verify your new email address')
+    end
+  end
+
+  describe 'DELETE /resource', js: true do
+    let(:user) { create(:user) }
+
+    before do
+      user.skip_confirmation!
+      user.save!
+    end
+    it 'returns http success' do
+      expect(User.count).to eq(1)
+      expect(WithdrawalUser.count).to eq(0)
+
+      visit new_user_session_path
+      expect(response).to have_http_status(:success)
+      fill_in 'Email',                 with: 'hoge@example.com'
+      fill_in 'Password',              with: 'foobar'
+      click_button 'Log in'
+      expect(URI.parse(current_url).path.to_s).to eq(top_path)
+      expect(page).to have_text('Signed in successfully.')
+
+      visit edit_user_registration_path
+      expect(response).to have_http_status(:success)
+      click_button 'Cancel my account'
+      page.accept_confirm 'Are you sure?'
+      sleep 0.5
+      expect(User.count).to eq(0)
+      expect(WithdrawalUser.count).to eq(1)
+      expect(URI.parse(current_url).path.to_s).to eq(root_path)
+      expect(page).to have_text('Bye! Your account has been successfully ' \
+                                'cancelled. We hope to see you again soon.')
+    end
+  end
 end
