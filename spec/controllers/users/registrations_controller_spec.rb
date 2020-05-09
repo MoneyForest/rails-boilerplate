@@ -20,9 +20,9 @@ RSpec.describe Users::RegistrationsController, type: :controller do
       expect { click_button 'Sign up' }.to change(User, :count).by(1)
       expect(response).to have_http_status(:success)
 
-      expect(URI.parse(current_url).path.to_s).to eq(root_path)
       expect(page).to have_text('A message with a confirmation link has been sent to your email address. ' \
                                 'Please follow the link to activate your account.')
+      expect(URI.parse(current_url).path.to_s).to eq(root_path)
     end
   end
 
@@ -45,9 +45,9 @@ RSpec.describe Users::RegistrationsController, type: :controller do
       fill_in 'Current password', with: 'foobar'
       click_button 'Update'
 
-      expect(URI.parse(current_url).path.to_s).to eq(top_path)
       expect(page).to have_text('You updated your account successfully, ' \
                                 'but we need to verify your new email address')
+      expect(URI.parse(current_url).path.to_s).to eq(top_path)
     end
   end
 
@@ -62,12 +62,12 @@ RSpec.describe Users::RegistrationsController, type: :controller do
       expect(response).to have_http_status(:success)
       click_button 'Cancel my account'
       page.accept_confirm 'Are you sure?'
-      sleep 0.5
+
+      expect(page).to have_text('Bye! Your account has been successfully ' \
+      'cancelled. We hope to see you again soon.')
+      expect(URI.parse(current_url).path.to_s).to eq(root_path)
       expect(User.count).to eq(0)
       expect(WithdrawalUser.count).to eq(1)
-      expect(URI.parse(current_url).path.to_s).to eq(root_path)
-      expect(page).to have_text('Bye! Your account has been successfully ' \
-                                'cancelled. We hope to see you again soon.')
     end
   end
 end
