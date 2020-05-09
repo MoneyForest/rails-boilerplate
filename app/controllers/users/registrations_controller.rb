@@ -26,14 +26,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # DELETE /resource
   def destroy
-    withdrawal_user = WithdrawalUser.new do |w|
-      w.user_id = current_user.id
-      w.email = current_user.email
-    end
+    withdrawal_user = set_withdrawl_user
+
     User.transaction do
       withdrawal_user.save!
       resource.destroy!
     end
+
     Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
     set_flash_message! :notice, :destroyed
     yield resource if block_given?
@@ -69,5 +68,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # The path used after sign up for inactive accounts.
   def after_inactive_sign_up_path_for(resource)
     super(resource)
+  end
+
+  private
+
+  def set_withdrawl_user
+    WithdrawalUser.new do |w|
+      w.user_id = current_user.id
+      w.email = current_user.email
+    end
   end
 end
