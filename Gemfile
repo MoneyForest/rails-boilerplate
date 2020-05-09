@@ -54,14 +54,14 @@ gem 'dotenv-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails'
   gem 'letter_opener_web'
   gem 'pry'
   gem 'pry-byebug'
   gem 'pry-doc'
   gem 'pry-rails'
-  gem 'rubocop', '~> 0.52.1', require: false
-  gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 3.5'
+  gem 'rubocop', '~> 0.52.1', require: false
 end
 
 group :development do
@@ -72,8 +72,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do
