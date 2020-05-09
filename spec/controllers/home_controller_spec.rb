@@ -4,8 +4,6 @@ require 'rails_helper'
 
 RSpec.describe HomeController, type: :controller do
   describe 'GET #home' do
-    let(:user) { create(:user) }
-
     context 'current_user exists' do
       it 'returns http redirect' do
         sign_in_user
@@ -24,11 +22,8 @@ RSpec.describe HomeController, type: :controller do
 
   describe 'GET #top' do
     context 'when logged in' do
-      before do
-        allow(controller).to receive(:authenticate_user!).and_return true
-      end
-
       it 'returns http success' do
+        sign_in_user
         get :top
         expect(response).to have_http_status(:success)
       end
@@ -44,12 +39,8 @@ RSpec.describe HomeController, type: :controller do
 
   describe 'GET #mypage' do
     context 'when logged in' do
-      before do
-        allow(controller).to receive(:authenticate_user!).and_return true
-      end
-
       it 'returns http success' do
-        allow(controller).to receive(:authenticate_user!).and_return true
+        sign_in_user
         get :mypage
         expect(response).to have_http_status(:success)
       end
