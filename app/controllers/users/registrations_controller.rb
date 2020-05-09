@@ -26,7 +26,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # DELETE /resource
   def destroy
-    withdrawal_user = set_withdrawl_user
+    withdrawal_user = set_withdrawal_user
 
     User.transaction do
       withdrawal_user.save!
@@ -72,7 +72,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
 
-  def set_withdrawl_user
+  def set_withdrawal_user
     WithdrawalUser.new do |w|
       w.user_id = current_user.id
       w.email = current_user.email
