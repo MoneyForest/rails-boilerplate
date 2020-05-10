@@ -64,7 +64,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
       page.accept_confirm 'Are you sure?'
 
       expect(page).to have_text('Bye! Your account has been successfully ' \
-      'cancelled. We hope to see you again soon.')
+                                'cancelled. We hope to see you again soon.')
       expect(URI.parse(current_url).path.to_s).to eq(root_path)
       expect(User.count).to eq(0)
       expect(WithdrawalUser.count).to eq(1)
