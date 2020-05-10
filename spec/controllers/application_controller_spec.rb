@@ -11,11 +11,8 @@ RSpec.describe ApplicationController, type: :controller do
 
   describe 'GET #some_acton' do
     context 'when signed in' do
-      before do
-        allow(controller).to receive(:authenticate_user!).and_return true
-      end
-
       it 'returns http success' do
+        sign_in_user
         get :index
         expect(response).to have_http_status(:success)
       end
