@@ -61,7 +61,7 @@ group :development, :test do
   gem 'pry-doc'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.5'
-  gem 'rubocop', '~> 0.52.1', require: false
+  gem 'rubocop', '~> 1.5.2', require: false
 end
 
 group :development do
